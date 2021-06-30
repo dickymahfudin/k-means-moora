@@ -1,0 +1,143 @@
+const models = require('../models');
+const petani = require('../models/petani');
+
+const laporan = async user_id => {
+  const createdAt = new Date();
+  const updatedAt = new Date();
+  const dataPetani = [
+    {
+      user_id,
+      name: 'Petani 1',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 2,
+      panen: 2,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 2',
+      lahan: 2,
+      kepemilikan: 2,
+      dokumentasi: 2,
+      ekonomi: 3,
+      panen: 3,
+      bantuan: 2,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 3',
+      lahan: 2,
+      kepemilikan: 2,
+      dokumentasi: 2,
+      ekonomi: 3,
+      panen: 3,
+      bantuan: 2,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 4',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 2,
+      panen: 2,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 5',
+      lahan: 2,
+      kepemilikan: 2,
+      dokumentasi: 2,
+      ekonomi: 3,
+      panen: 3,
+      bantuan: 2,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 6',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 1,
+      panen: 1,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 7',
+      lahan: 2,
+      kepemilikan: 2,
+      dokumentasi: 2,
+      ekonomi: 3,
+      panen: 3,
+      bantuan: 2,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 8',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 2,
+      panen: 2,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 9',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 1,
+      panen: 1,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+    {
+      user_id,
+      name: 'Petani 10',
+      lahan: 1,
+      kepemilikan: 1,
+      dokumentasi: 1,
+      ekonomi: 1,
+      panen: 1,
+      bantuan: 1,
+      createdAt,
+      updatedAt,
+    },
+  ];
+  const dataKriteria = [
+    { user_id, createdAt, updatedAt, name: 'lahan', bobot: 0.175 },
+    { user_id, createdAt, updatedAt, name: 'kepemilikan', bobot: 0.05 },
+    { user_id, createdAt, updatedAt, name: 'dokumentasi', bobot: 0.025 },
+    { user_id, createdAt, updatedAt, name: 'ekonomi', bobot: 0.25 },
+    { user_id, createdAt, updatedAt, name: 'panen', bobot: 0.15 },
+    { user_id, createdAt, updatedAt, name: 'bantuan', bobot: 0.35 },
+  ];
+  await models.petani.bulkCreate(dataPetani);
+  await models.kriteria.bulkCreate(dataKriteria);
+
+  return { status: 'success' };
+};
+
+module.exports = laporan;

@@ -1,0 +1,31 @@
+<div class="section-title">
+  <h2>Data Petani</h2>
+</div>
+
+<form id="form" action="<%=action%>" method="POST">
+  <div class="row">
+    <div class="card shadow border border-primary">
+      <div class="col-md-12 mb-4 mt-4">
+        <div class="form-group">
+          <label>Nama</label>
+          <input type="text" name="name" class="form-control" placeholder="Name" required value="<%= valName%>" />
+        </div>
+      </div>
+
+      <% katagoris.forEach((katagori) => { %>
+      <div class="col-md-12 mb-4">
+        <label><%= katagori.name%></label>
+        <select name="<%=katagori.db%>" class="form-select" required>
+          <option disabled selected value><%= katagori.name%></option>
+          <% katagori.subs.forEach((sub) => { const selected = sub.selected && "selected" %>
+          <option value="<%= sub.value %>" <%=selected%>><%= sub.name%></option>
+          <% })%>
+        </select>
+      </div>
+      <% })%>
+      <div class="col-md-12 mb-4">
+        <button type="submit" class="btn btn-primary col-md-12">Simpan Data</button>
+      </div>
+    </div>
+  </div>
+</form>

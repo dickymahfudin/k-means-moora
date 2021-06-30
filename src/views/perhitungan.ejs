@@ -1,0 +1,93 @@
+<div class="card card-body">
+  <div class="row">
+    <h4>Perhitungan K-Means</h4>
+    <% rumus.kMeans.forEach((kmean,index)=>{ %>
+    <p>Pengulangan ke-<%=index+1%> adalah</p>
+    <%kmean.kmeanJarak.jarak1.forEach((jarak,i)=>{ %>
+    <div class="col-6">\[d(c_<%=index+1%>,x_<%=i+1%>)=\sqrt{_{<%=jarak.latex%>}} = <%=jarak.sqrt%>\]</div>
+    <% }); kmean.kmeanJarak.jarak2.forEach((jarak,i)=>{ %>
+    <div class="col-6">\[d(c_<%=index+1%>,x_<%=i+1%>)=\sqrt{_{<%=jarak.latex%>}} = <%=jarak.sqrt%>\]</div>
+    <% }); %>
+    <p>Centroid Baru1</p>
+    <% kmean.centroidBaru1.forEach((centroid,i)=>{ %>
+    <div class="col-6">
+      \[v_<%=i+1%>={<%=centroid.latex%> \over <%=kmean.centroiNew1.length%>} = <%=centroid.sum%>\]
+    </div>
+    <% }); %>
+    <p>Centroid Baru2</p>
+    <% kmean.centroidBaru2.forEach((centroid,i)=>{ %>
+    <div class="col-6">
+      \[v_<%=i+1%>={<%=centroid.latex%> \over <%=kmean.centroiNew1.length%>} = <%=centroid.sum%>\]
+    </div>
+    <% }); %>
+    <p>C 1 = <%=kmean.centroiNew1%></p>
+    <p>C 2 = <%=kmean.centroiNew2%></p>
+    <p>Klaster 1 = <%=kmean.pengulangan.klaster1%></p>
+    <p>Klaster 2 = <%=kmean.pengulangan.klaster2%></p>
+    <% }); %>
+
+    <h4 class="mt-4">Perhitungan Moora</h4>
+    <p>$$x=\begin {bmatrix} <%= rumus.mooraKlaster1.matrix1%> \end{bmatrix}$$</p>
+    <p>Normalisasi</p>
+    <% rumus.mooraKlaster1.perhitungan.forEach((moora,i)=>{ %>
+    <div>\[C<%=i+1%>=\sqrt{_{<%=moora.matrixString%>}} = <%=moora.sum%>\]</div>
+    <% moora.matrix.forEach((matrix,i)=>{ %>
+    <div class="col-4">\[v_<%=i+1%>={<%=matrix%> \over <%=moora.sum%>} = <%=moora.perhitungan1[i]%>\]</div>
+
+    <% }); }); %>
+    <p>$$x_ij=\begin {bmatrix} <%= rumus.mooraKlaster1.matrix2%> \end{bmatrix}$$</p>
+    <div class="row justify-content-center">
+      <div class="col col-md-6">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Alternatif</th>
+              <th scope="col">Y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% rumus.mooraKlaster1.y.forEach((hasil,i) => { %>
+            <tr>
+              <th scope="row">A<%= i+1%></th>
+              <td><%= hasil%></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <p>$$x=\begin {bmatrix} <%= rumus.mooraKlaster2.matrix1%> \end{bmatrix}$$</p>
+    <p>Normalisasi</p>
+    <% rumus.mooraKlaster2.perhitungan.forEach((moora,i)=>{ %>
+    <div>\[C<%=i+1%>=\sqrt{_{<%=moora.matrixString%>}} = <%=moora.sum%>\]</div>
+    <% moora.matrix.forEach((matrix,i)=>{ %>
+    <div class="col-4">\[v_<%=i+1%>={<%=matrix%> \over <%=moora.sum%>} = <%=moora.perhitungan1[i]%>\]</div>
+
+    <% }); }); %>
+    <p>$$x_ij=\begin {bmatrix} <%= rumus.mooraKlaster2.matrix2%> \end{bmatrix}$$</p>
+    <div class="row justify-content-center">
+      <div class="col col-md-6">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th scope="col">Alternatif</th>
+              <th scope="col">Y</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% rumus.mooraKlaster2.y.forEach((hasil,i) => { %>
+            <tr>
+              <th scope="row">A<%= i+1%></th>
+              <td><%= hasil%></td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
