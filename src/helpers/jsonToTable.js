@@ -12,7 +12,7 @@ const petaniTable = (data, param = null) => {
   result.data = data.map((e, i) => {
     const newData = param ? e[param] : e;
     Object.keys(key).forEach(el => {
-      if (el != 'id' && el != 'user_id' && el != 'name') {
+      if (el != 'id' && el != 'user_id' && el != 'name' && el != 'y') {
         const tempFind = katagori.find(tfn => tfn.db == el);
         return (e[el] = tempFind.subs.find(fn => fn.value == e[el]).name);
       }

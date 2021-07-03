@@ -42,14 +42,16 @@
           <thead>
             <tr>
               <th scope="col">Alternatif</th>
+              <th scope="col">Petani</th>
               <th scope="col">Y</th>
             </tr>
           </thead>
           <tbody>
-            <% rumus.mooraKlaster1.y.forEach((hasil,i) => { %>
+            <% rumus.table.klaster1.forEach((hasil,i) => { %>
             <tr>
               <th scope="row">A<%= i+1%></th>
-              <td><%= hasil%></td>
+              <td><%= hasil.name%></td>
+              <td><%= hasil.y%></td>
             </tr>
             <% }) %>
           </tbody>
@@ -72,14 +74,16 @@
           <thead>
             <tr>
               <th scope="col">Alternatif</th>
+              <th scope="col">Petani</th>
               <th scope="col">Y</th>
             </tr>
           </thead>
           <tbody>
-            <% rumus.mooraKlaster2.y.forEach((hasil,i) => { %>
+            <% rumus.table.klaster2.forEach((hasil,i) => { %>
             <tr>
               <th scope="row">A<%= i+1%></th>
-              <td><%= hasil%></td>
+              <td><%= hasil.name%></td>
+              <td><%= hasil.y%></td>
             </tr>
             <% }) %>
           </tbody>

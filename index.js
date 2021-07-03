@@ -9,6 +9,8 @@ const middleware = require('./src/helpers/middleware');
 const petaniRouter = require('./src/routes/petani');
 const kriteriaRouter = require('./src/routes/kriteria');
 const rumusRouter = require('./src/routes/rumus');
+const dashboardRouter = require('./src/routes/dashboard');
+const loginRouter = require('./src/routes/login');
 
 const PORT = process.env.PORT || 5000;
 const app = express();
@@ -32,11 +34,13 @@ app.set('views', path.join(__dirname, './src/views'));
 app.set('view engine', 'ejs');
 app.set('layout', './layouts/index');
 
-app.use('/petani', petaniRouter);
-app.use('/kriteria', kriteriaRouter);
-app.use('/rumus', rumusRouter);
+app.use('/login', loginRouter);
+app.use('/petani', middleware, petaniRouter);
+app.use('/kriteria', middleware, kriteriaRouter);
+app.use('/rumus', middleware, rumusRouter);
+app.use('/dashboard', middleware, dashboardRouter);
 
-// app.use('*', middleware, (req, res) => res.redirect('/dashboard'));
+app.use('*', middleware, (req, res) => res.redirect('/dashboard'));
 // app.get('/', (req, res) => res.render('test'));
 
 app.listen(PORT, () => console.info(`Server Running on : http://localhost:${PORT}`));

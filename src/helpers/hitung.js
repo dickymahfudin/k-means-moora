@@ -134,10 +134,41 @@ const perhitungan = (datas, kriteria) => {
   };
   const kmeans = kMeans(10);
   const klaster = kmeans[kmeans.length - 1].pengulangan;
-  const mooraKlaster1 = moora(klaster.klaster1.map((e, i) => datas[e - 1]));
-  const mooraKlaster2 = moora(klaster.klaster2.map((e, i) => datas[e - 1]));
-  const result = { kMeans: kMeans(10), mooraKlaster1, mooraKlaster2 };
+  const klaster1 = klaster.klaster1.map((e, i) => datas[e - 1]);
+  const klaster2 = klaster.klaster2.map((e, i) => datas[e - 1]);
+  const mooraKlaster1 = moora(klaster1);
+  const mooraKlaster2 = moora(klaster2);
+  const table = {
+    klaster1: klaster1
+      .map((e, i) => {
+        return { ...e, name: `P${klaster.klaster1[i]}`, y: +mooraKlaster1.y[i] };
+      })
+      .sort((a, b) => b.y - a.y),
+    klaster2: klaster2
+      .map((e, i) => {
+        return { ...e, name: `P${klaster.klaster2[i]}`, y: +mooraKlaster2.y[i] };
+      })
+      .sort((a, b) => b.y - a.y),
+  };
+  const result = { kMeans: kMeans(10), mooraKlaster1, mooraKlaster2, table };
   return result;
 };
 
-module.exports = perhitungan;
+const e = require('express');
+const { kriteria, petani } = require('../models');
+
+const getHitung = async () => {
+  const user_id = 1;
+  const exclude = ['id', 'user_id', 'createdAt', 'updatedAt'];
+  const tempPetanis = await petani.findAll({
+    where: { user_id },
+    attributes: { exclude: [...exclude, 'name'] },
+    order: [['id', 'ASC']],
+  });
+  const tempKriterias = await kriteria.findAll({ where: { user_id }, attributes: { exclude }, order: [['id', 'ASC']] });
+  const petanis = tempPetanis.map(e => e.dataValues);
+  const kriterias = tempKriterias.map(e => e.dataValues);
+  const hitung = perhitungan(petanis, kriterias);
+  return { petanis, kriteria, hitung };
+};
+module.exports = getHitung;
