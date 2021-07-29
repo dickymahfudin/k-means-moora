@@ -13,6 +13,7 @@ $(document).ready(function () {
           title: '',
           searchable: false,
           sortable: false,
+          export:false,
           width: '8%',
           render: function (id, type, full, meta) {
             return `<span><a href="/${parsUrl}/form/${id}" class="modal-open lg" title="Edit ${full.name}" id="${id}"><i class='h3 bx bxs-message-square-edit bx-tada bx-flip-horizontal'></i></a> |
@@ -29,9 +30,13 @@ $(document).ready(function () {
         processing: true,
         retrieve: true,
         responsive: true,
-        // dom: "Blrtip",
+        dom: "Blrtip",
+        buttons: [
+            'excel', 'pdf',
+        ],
         data: response.data,
         columns: response.columns,
+     
       });
     },
   });
