@@ -5,7 +5,7 @@ const petaniTable = (data, param = null) => {
   result.columns.push({ data: 'no', title: 'NO' });
   const key = param ? data[0][param] : data[0];
   Object.keys(key).forEach(el => {
-    if (el != 'id' && el != 'user_id') {
+    if (el != 'id' && el != 'user_id' && el != 'bantuan') {
       result.columns.push({ data: el, title: el.toUpperCase() });
     }
   });
