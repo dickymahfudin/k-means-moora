@@ -29,6 +29,7 @@ const katagori = [
     subs: [
       { name: 'Tidak Mampu', value: 1, selected: false },
       { name: 'Mampu ', value: 2, selected: false },
+      { name: 'Mampu ', value: 3, selected: false },
     ],
   },
   {
