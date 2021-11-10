@@ -13,7 +13,7 @@ router.post('/', async (req, res, next) => {
   const { username, password } = req.body;
   if (username != 'admin' && password != 'admin123') {
     req.flash('error', 'Username atau Password Salah');
-    res.redirect('/login');
+    return res.redirect('/login');
   }
   req.session.login = true;
   req.flash('success', 'Login Berhasil');

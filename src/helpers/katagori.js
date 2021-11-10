@@ -45,8 +45,8 @@ const katagori = [
     name: 'Jenis Bantuan',
     db: 'bantuan',
     subs: [
-      { name: 'Pupuk Bansos', value: 1, selected: false },
-      { name: 'Pupuk ', value: 2, selected: false },
+      { name: 'Pupuk  Bersubsidi, Dana Bansos', value: 1, selected: false },
+      { name: 'Pupuk Bersubsidi ', value: 2, selected: false },
     ],
   },
 ];
